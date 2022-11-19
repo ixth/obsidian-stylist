@@ -12,10 +12,11 @@
     "isolatedModules": true,
 	"strictNullChecks": true,
     "lib": [
-      "DOM",
-      "ES5",
-      "ES6",
-      "ES7"
+      "dom",
+      "dom.iterable",
+      "es5",
+      "es6",
+      "es7"
     ]
   },
   "include": [
