@@ -1,5 +1,8 @@
 {
 	"name": "obsidian-stylist",
+	"engines": {
+		"node": ">=12.0.0 "
+	},
 	"version": "0.0.1",
 	"description": "Obsidian plugin that allows to add classes and styles on markdown blocks",
 	"main": "main.js",
