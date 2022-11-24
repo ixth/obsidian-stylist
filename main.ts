@@ -15,9 +15,9 @@ export default class extends Plugin {
 
     onload() {
         this.registerMarkdownCodeBlockProcessor('style', (source, element) => {
-            const style = element.ownerDocument.createElement('style');
-            style.innerHTML = makeScopedStyles('.markdown-preview-view', source);
-            element.replaceWith(style);
+            element.createEl('style', {
+                text: makeScopedStyles('.markdown-preview-view', source)
+            });
         });
 
         this.registerMarkdownPostProcessor((element) => {
