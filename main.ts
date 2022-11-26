@@ -4,11 +4,11 @@ const CLASSNAME_TAG = 'classname:';
 
 // not a real CSS parser, but works in most cases
 const makeScopedStyles = (rootSelector: string, source: string): string =>
-    source.trim().split(/(?<=\})/).map((ruleset) => {
+    source.trim().split('}').map((ruleset) => {
         const [selector, declaraions] = ruleset.split(/(?=\{)/);
         return `:where(${rootSelector}) :where(${selector.trim().replace(/\n/, ' ')}) ${declaraions}`;
     })
-    .join('');
+    .join('}');
 
 export default class extends Plugin {
     private lastClassName: string | undefined;
