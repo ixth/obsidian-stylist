@@ -26,6 +26,8 @@ Result:
 ![Style tag render](./style-dark.png#gh-dark-mode-only)
 ![Style tag render](./style-light.png#gh-light-mode-only)
 
+> **Note**
+> All styles are processed to prevent messing up the rest of the Obsidian app.
 
 Or if you want certain blocks on your page to use multi-column layout, you can just add class on containing block:
 
