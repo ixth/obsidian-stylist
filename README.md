@@ -9,7 +9,7 @@
 
 ## Examples
 
-For example, if you want to add underline for headings on one particular page, your can do it like this:
+For example, if you want to add underline for headings on one particular page, you can do it like this:
 
 ````markdown
 ```style
