@@ -1,14 +1,20 @@
+import { hasPseudoElements, parseRulesets, parseSelector, splitPseudoElements } from 'not-a-real-css-parser';
 import { Plugin } from 'obsidian';
 
 const CLASSNAME_TAG = 'classname:';
 
-// not a real CSS parser, but works in most cases
 const makeScopedStyles = (rootSelector: string, source: string): string =>
-    source.trim().split('}').map((ruleset) => {
-        const [selector, declaraions] = ruleset.split(/(?=\{)/);
-        return `:where(${rootSelector}) :where(${selector.trim().replace(/\n/, ' ')}) ${declaraions}`;
+    parseRulesets(source).map(({ selector, declarations }) => {
+        if (hasPseudoElements(selector)) {
+            return parseSelector(selector).map((selector) => {
+                const [selectorHead, pseudoElement] = splitPseudoElements(selector);
+                return `${rootSelector} :is(${selectorHead})${pseudoElement ?? ''} {${declarations}}`;
+            })
+            .join(',');
+        }
+        return `${rootSelector} :is(${selector}) {${declarations}}`;
     })
-    .join('}');
+    .join('\n');
 
 export default class extends Plugin {
     private lastClassName: string | undefined;
